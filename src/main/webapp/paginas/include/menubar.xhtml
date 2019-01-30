@@ -1,0 +1,43 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui">
+
+<!-- Menu do sistema -->
+<p:menubar styleClass="menubar">
+	<p:menuitem value="Inicio" url="/" icon="ui-icon-home" />
+
+	<p:submenu label="Cadastro" icon="ui-icon-note">
+		<p:menuitem value="Conta" url="../cadastro/conta.faces" />
+		<p:submenu label="Cliente .." >
+			<p:menuitem value="Pessoa Física" 	url="../financeiro/caixa.faces" />
+			<p:menuitem value="Pessoa Jurídica" url="../financeiro/banco.faces" />
+		</p:submenu>
+		<p:menuitem value="Login" url="./cliente/listar.xhtml" />
+	</p:submenu>
+	
+
+	<p:submenu label="Operação" icon="ui-icon-clipboard">
+		<p:menuitem value="Deposito" url="../financeiro/contasReceber.faces" />
+		<p:menuitem value="Sacar" url="../financeiro/contasPagar.faces" />
+		<p:submenu label="Transferência ..">
+		<p:menuitem value="entre Contas" url="../financeiro/contasPagar.faces" />
+		<p:menuitem value="entre Bancos" url="../financeiro/contasPagar.faces" />
+		</p:submenu>
+	</p:submenu>
+	
+	<p:submenu label="Consultas" icon="ui-icon-circle-check">
+		<p:menuitem value="Cliente" url="/paginas/cliente/listar.xhtml" />
+		<p:menuitem value="Contas" url="../financeiro/contasReceber.faces" />
+	</p:submenu>
+
+	<p:menuitem value="Extrato" url="../estoque/produto.faces" icon="ui-icon-tag"/>
+
+	<p:submenu label="Configurações" icon="ui-icon-gear">
+		<p:menuitem value="-----------" url="#" />
+		<p:menuitem value="-----------" url="#" />
+		<p:menuitem value="-----------" url="#" />
+		<p:menuitem value="-----------" url="#" />
+	</p:submenu>
+	
+</p:menubar>
+<!-- Final do Menu -->
+</html>

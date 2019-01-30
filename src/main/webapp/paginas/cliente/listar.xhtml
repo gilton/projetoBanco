@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<h:outputStylesheet library="css" name="basics.css" />
+</h:head>
+
+<h:body>
+	
+	<!-- MENU -->
+	<ui:include src="../include/menubar.xhtml"></ui:include>
+	
+	<h1>Consulta de Clientes</h1>
+	
+	<p></p>
+	<h3 align="right" > Clientes Cadastrados </h3>
+	<hr style="margin-top:-1em"/>
+	
+	<f:metadata>
+		<f:viewAction action="#{clienteBean.listar}" />
+	</f:metadata>
+
+	
+	<h:form id="frm">
+		
+		<p:dataTable value="#{clienteBean.listarClientes}"
+			var="clientes" border="1" cellspacing="0" cellpadding="2"
+			rowKey="#{clientes.idCliente}" paginatorPosition="bottom" 
+			selection="#{clienteFaces.clienteEdicao}"
+			style="overflow: auto; width: auto;" 
+			
+			reflow="true" paginator="true" rows="10" sortBy="#{cli.codigo}"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink}
+					{PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			rowsPerPageTemplate="5,10,15,20" emptyMessage="Nenhum Registro Encontrado.">
+			 
+			<!-- Ajax necessario para selecionar o objeto, devido a algum bug no primefaces -->
+			<p:ajax listener="#{clientesBean.selecionar}" event="rowSelect" update="@form" />
+
+			<p:column selectionMode="single" style="width:1.45em;"/> 
+			 
+			 
+			<p:column headerText="Id" style="text-align: left; width:1em">
+				<h:outputText value="#{clientes.idCliente}" />
+			</p:column>
+			
+			<p:column headerText="Nome" style="text-align: center; width:20%">
+				<h:outputText value="#{clientes.pessoa.nome}" />
+			</p:column>
+			
+			<p:column headerText="CPF" style="text-align: center">
+				<h:outputText value="#{clientes.pessoa.cpf}" />
+			</p:column>
+		
+			<p:column headerText="Fantasia"	style="text-align: center">
+				<h:outputText value="#{clientes.empresa.fantasia}" />
+			</p:column>
+			
+			<p:column headerText="CNPJ" style="text-align: center">
+				<h:outputText value="#{clientes.empresa.cnpj}" />
+			</p:column>
+			
+			<p:column headerText="Tipo" style="text-align: center">
+				<h:outputText value="#{clientes.tipoCliente}" />
+			</p:column>
+			<p:column headerText="Descrição" style="text-align: center">
+				<h:outputText value="#{clientes.descricaoCliente}" />
+			</p:column>
+			<p:column headerText="Cadastro" style="text-align: center">
+				<h:outputText value="#{clientes.dataCadastro}" >
+					<f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo" />
+				</h:outputText>
+			</p:column>
+			
+			<!-- LOGIN -->
+			<p:column headerText="Usuário" style="text-align: center">
+				<h:outputText value="#{clientes.login.usuario}" />
+			</p:column>
+			<p:column headerText="E-mail" style="text-align: center">
+				<h:outputText value="#{clientes.login.email}" />
+			</p:column>
+			<p:column headerText="Ações" style="text-align: center; width:8%">
+				<p:commandButton action="formCliente" value="Alterar"/>
+				<p:commandButton action="doRemover" value="Remover" 
+						onclick="return confirm('Confirmar Remover?')"/>
+			</p:column>
+			
+			
+		</p:dataTable>
+	</h:form>
+	
+</h:body>
+</html>

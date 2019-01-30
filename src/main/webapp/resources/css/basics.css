@@ -1,0 +1,29 @@
+@CHARSET "UTF-8";
+
+html {
+	margin: 0;
+}
+
+body {
+	margin: 0;
+}
+
+
+html body form div.ui-datatable.ui-widget {
+	margin: 0 0 0 0;
+}
+
+table thead tr th span {
+	font-size: 9pt;
+	text-transform: uppercase;
+}
+
+html body form table tbody tr td {
+	font-size: 8.7pt;
+	text-transform: uppercase;
+}
+
+
+button span.ui-icon {
+	padding: 0;
+}
